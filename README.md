@@ -71,6 +71,12 @@ Our integrated system provides a complete solution for object detection and loca
   - YOLOv8 for object detection
 ## 🔧 Installation
 
+### 📋 Prerequisites
+- **🤖 ROS2 Humble** ([Installation Guide](https://docs.ros.org/en/humble/Installation.html))
+- **🕵️ YOLOvX ROS** ([Setup Instructions](https://github.com/mgonzs13/yolov8_ros))
+- **💻 C++ Compiler**: GCC 8 or newer
+- **📚 Required Libraries**: PCL, OpenCV, and standard ROS2 dependencies
+
 ### Install Dependencies
 ```bash
 sudo apt-get update
