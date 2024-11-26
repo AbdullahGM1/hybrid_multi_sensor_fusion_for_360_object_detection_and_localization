@@ -83,13 +83,106 @@ cd ~/ros2_ws/src
 git clone https://github.com/AbdullahGM1/hybrid_multi_sensor_fusion_for_360_object_detection_and_localization.git
 ```
 
-### Build Packages
+## 🛠️ Launch File Configurations
+
+### Lidar-Camera Fusion Package Launch File Modifications
+
+Located in: `ros2_lidar_camera_fusion_with_detection_cpp/launch/`
+
+#### 1. Depth Range Configuration
+```python
+parameters=[
+    {'min_depth': 0.2, 'max_depth': 10.0},  # Adjust x-axis depth range
+]
+```
+- **min_depth**: Minimum detection distance
+- **max_depth**: Maximum detection distance
+
+#### 2. Sensor Frame Configuration
+```python
+parameters=[
+    {'lidar_frame': 'source/frame/name',    # Source LiDAR frame
+     'camera_frame': 'target/frame/name'}   # Target camera frame
+]
+```
+- Set correct source and target frames for accurate transformation
+
+#### 3. Topic Remapping
+```python
+remappings=[
+    ('/scan/points', '/lidar/topic/name'),           # LiDAR point cloud topic
+    ('/interceptor/gimbal_camera_info', '/camera/info/topic'),  # Camera info topic
+    ('/interceptor/gimbal_camera', '/camera/image/topic'),      # Camera image topic 
+    ('/yolo/tracking', '/yolo/tracking/topic')       # YOLO tracking topic
+]
+```
+- Replace with your specific topic names
+
+#### 4. YOLO Configuration
+```python
+launch_arguments={
+    'model': '/path/to/your/yolo/model.pt',
+    'threshold': '0.5',
+    'input_image_topic': '/interceptor/gimbal_camera',
+    'device': 'cuda:0'
+}
+```
+- Specify YOLO model path
+- Set detection threshold
+- Choose inference device
+
+### Depth Map Detection Package Launch File Modifications
+
+Located in: `ros2_depth_map_detection_localization_cpp/launch/`
+
+#### 1. Depth Map Parameters
+```python
+parameters=[
+    {'width': 650,     # Depth map width
+     'height': 650,    # Depth map height
+     'scale': 50,      # Depth map scale
+     'min_depth': 0.2, # Minimum depth
+     'max_depth': 30.0 # Maximum depth
+    }
+]
+```
+- Configure depth map dimensions and range
+
+#### 2. Topic Remapping
+```python
+remappings=[
+    ('/scan/points', '/lidar/point/cloud/topic'),   # LiDAR point cloud topic
+    ('/yolo/tracking', '/yolo/tracking/topic')      # YOLO tracking topic
+]
+```
+- Map to your specific topic names
+
+#### 3. YOLO Configuration
+```python
+launch_arguments={
+    'model': '/path/to/your/yolo/model.pt',
+    'threshold': '0.5',
+    'input_image_topic': '/depth_map',  # Fixed input topic
+    'device': 'cuda:0'
+}
+```
+- Specify YOLO model path
+- Set detection threshold
+- Choose inference device
+
+### 🚨 Important Configuration Tips
+- Always verify sensor frame names
+- Ensure topic names match your setup
+- Adjust depth ranges based on your sensor specifications
+- Select appropriate YOLO model for your use case
+- Choose CUDA or CPU based on your hardware
+
+## Build Packages
 ```bash
 cd ~/ros2_ws
 colcon build --packages-select hybrid_multi_sensor_fusion_for_360_object_detection_and_localization
 source install/setup.bash
 ```
-
 ## 🚀 Usage
 
 ### Run the Launch File
@@ -97,31 +190,79 @@ source install/setup.bash
 ros2 launch hybrid_multi_sensor_fusion_for_360_object_detection_and_localization 360_object_detection_and_localization.launch.py
 ```
 
-## 📡 Published Topics
+## 🔬 Node Details
 
-### Lidar-Camera Fusion Package
-- `/image_lidar`: Image with projected LiDAR points
-- `/detected_object_distance`: Average object distances
-- `/detected_object_pointcloud`: Object point clouds
+### Lidar-Camera Fusion Node: `lidar_camera_fusion_node`
 
-### Depth Map Detection Package
-- Depth map representations
-- Object pose data
-- Detected object point clouds
+#### Node Purpose
+A sophisticated ROS2 node that performs real-time sensor fusion between LiDAR point clouds and camera imagery, enabling comprehensive object detection and localization.
+
+#### Subscribed Topics
+| Topic | Type | Description |
+|-------|------|-------------|
+| `/scan/points` | `sensor_msgs/PointCloud2` | Raw LiDAR point cloud data |
+| `/interceptor/gimbal_camera` | `sensor_msgs/Image` | Camera image stream |
+| `/interceptor/gimbal_camera_info` | `sensor_msgs/CameraInfo` | Camera intrinsic parameters |
+| `/yolo/tracking` | `vision_msgs/Detection2DArray` | Object bounding boxes from YOLO detector |
+
+#### Published Topics
+| Topic | Type | Description |
+|-------|------|-------------|
+| `/image_lidar` | `sensor_msgs/Image` | Camera image with projected LiDAR points |
+| `/detected_object_distance` | `std_msgs/Float32MultiArray` | Average distances of detected objects |
+| `/detected_object_pointcloud` | `sensor_msgs/PointCloud2` | Point clouds for each detected object |
+
+#### Node Parameters
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `min_depth` | float | 0.2 | Minimum depth filtering for point clouds |
+| `max_depth` | float | 10.0 | Maximum depth filtering for point clouds |
+| `lidar_frame` | string | - | Source LiDAR coordinate frame |
+| `camera_frame` | string | - | Target camera coordinate frame |
+
+#### Processing Pipeline
+1. Transform LiDAR point clouds to camera coordinate frame
+2. Filter point clouds based on depth range
+3. Project LiDAR points onto camera image
+4. Associate points with YOLO detected objects
+5. Compute object-specific point cloud statistics
+
+### Depth Map Detection Node: `depth_map_detection_node`
+
+#### Node Purpose
+A specialized ROS2 node that converts point cloud data into depth maps, detecting and localizing objects with precise 3D positioning.
+
+#### Subscribed Topics
+| Topic | Type | Description |
+|-------|------|-------------|
+| `/scan/points` | `sensor_msgs/PointCloud2` | Raw LiDAR point cloud data |
+| `/yolo/tracking` | `vision_msgs/Detection2DArray` | Object bounding boxes from YOLO detector |
+
+#### Published Topics
+| Topic | Type | Description |
+|-------|------|-------------|
+| `/original_depth_map` | `sensor_msgs/Image` | Depth map of entire scene |
+| `/object_depth_map` | `sensor_msgs/Image` | Depth map highlighting detected objects |
+| `/detected_objects_pose` | `geometry_msgs/PoseArray` | 3D poses of detected objects |
+| `/object_point_clouds` | `sensor_msgs/PointCloud2` | Point clouds for each detected object |
+
+#### Node Parameters
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `width` | int | 650 | Depth map width |
+| `height` | int | 650 | Depth map height |
+| `scale` | int | 50 | Depth map scaling factor |
+| `min_depth` | float | 0.2 | Minimum depth range |
+| `max_depth` | float | 30.0 | Maximum depth range |
+
+#### Processing Pipeline
+1. Convert point cloud to depth map
+2. Generate scene-wide depth representation
+3. Isolate depth information for detected objects
+4. Calculate 3D pose for each detected object
+5. Publish object-specific point clouds and poses
+
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please:
-1. Fork the repositories
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
-## 📄 License
-
-[Add your license information]
-
-## 📞 Contact
-
-[Your contact information]
+Feel free to contribute to this project by creating pull requests or opening issues! 🌟 Your input is welcome and appreciated! 💡
