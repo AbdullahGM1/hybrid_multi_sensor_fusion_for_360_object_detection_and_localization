@@ -31,7 +31,7 @@ Our integrated system provides a complete solution for object detection and loca
 
 #### Lidar-Camera Fusion
 <p align="center">
-  <img src="hybrid_multi_sensor_fusion_for_360_object_detection_and_localization/images/Camera_Lidar_Fusion.gif" alt="Lidar-Camera Fusion" width="500"/>
+  <img src="images/Camera_Lidar_Fusion.gif" alt="Lidar-Camera Fusion" width="500"/>
   <br>
   <strong>Key Visualization:</strong> Lidar points overlaid on camera image, showing precise object localization
 </p>
@@ -43,7 +43,7 @@ Our integrated system provides a complete solution for object detection and loca
 
 #### Depth Map Detection
 <p align="center">
-  <img src="hybrid_multi_sensor_fusion_for_360_object_detection_and_localization/images/3.gif" alt="Depth Map Detection" width="500"/>
+  <img src="images/3.gif" alt="Depth Map Detection" width="500"/>
   <br>
   <strong>Key Visualization:</strong> Depth map generation and object localization
 </p>
