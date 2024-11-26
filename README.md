@@ -80,40 +80,22 @@ sudo apt-get install libpcl-dev libopencv-dev
 ### Clone Repositories
 ```bash
 cd ~/ros2_ws/src
-git clone https://github.com/AbdullahGM1/ros2_lidar_camera_fusion_with_detection_cpp.git
-git clone https://github.com/AbdullahGM1/ros2_depth_map_detection_localization_cpp.git
+git clone https://github.com/AbdullahGM1/hybrid_multi_sensor_fusion_for_360_object_detection_and_localization.git
 ```
 
 ### Build Packages
 ```bash
 cd ~/ros2_ws
-colcon build --packages-select ros2_lidar_camera_fusion_with_detection_cpp ros2_depth_map_detection_localization_cpp
+colcon build --packages-select hybrid_multi_sensor_fusion_for_360_object_detection_and_localization
 source install/setup.bash
 ```
 
 ## 🚀 Usage
 
-### Lidar-Camera Fusion
+### Run the Launch File
 ```bash
-ros2 launch ros2_lidar_camera_fusion_with_detection_cpp lidar_camera_fusion_yolo.launch.py
+ros2 launch hybrid_multi_sensor_fusion_for_360_object_detection_and_localization 360_object_detection_and_localization.launch.py
 ```
-
-### Depth Map Detection
-```bash
-ros2 launch ros2_depth_map_detection_localization_cpp depth_map_detection_localization_yolo.launch.py
-```
-
-## 🖼️ Demonstrations
-
-### Lidar-Camera Fusion
-<p align="center">
-  <img src="lidar_camera_fusion/images/Camera_Lidar_Fusion.gif" alt="Lidar-Camera Fusion" width="500"/>
-</p>
-
-### Depth Map Detection
-<p align="center">
-  <img src="depth_map_detection/images/3.gif" alt="Depth Map Detection" width="500"/>
-</p>
 
 ## 📡 Published Topics
 
