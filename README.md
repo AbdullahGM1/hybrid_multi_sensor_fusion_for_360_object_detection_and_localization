@@ -69,5 +69,77 @@ Our integrated system provides a complete solution for object detection and loca
   - PCL (Point Cloud Library)
   - OpenCV
   - YOLOv8 for object detection
+## 🔧 Installation
 
-## (Rest of the previous README remains the same)
+### Install Dependencies
+```bash
+sudo apt-get update
+sudo apt-get install libpcl-dev libopencv-dev
+```
+
+### Clone Repositories
+```bash
+cd ~/ros2_ws/src
+git clone https://github.com/AbdullahGM1/ros2_lidar_camera_fusion_with_detection_cpp.git
+git clone https://github.com/AbdullahGM1/ros2_depth_map_detection_localization_cpp.git
+```
+
+### Build Packages
+```bash
+cd ~/ros2_ws
+colcon build --packages-select ros2_lidar_camera_fusion_with_detection_cpp ros2_depth_map_detection_localization_cpp
+source install/setup.bash
+```
+
+## 🚀 Usage
+
+### Lidar-Camera Fusion
+```bash
+ros2 launch ros2_lidar_camera_fusion_with_detection_cpp lidar_camera_fusion_yolo.launch.py
+```
+
+### Depth Map Detection
+```bash
+ros2 launch ros2_depth_map_detection_localization_cpp depth_map_detection_localization_yolo.launch.py
+```
+
+## 🖼️ Demonstrations
+
+### Lidar-Camera Fusion
+<p align="center">
+  <img src="lidar_camera_fusion/images/Camera_Lidar_Fusion.gif" alt="Lidar-Camera Fusion" width="500"/>
+</p>
+
+### Depth Map Detection
+<p align="center">
+  <img src="depth_map_detection/images/3.gif" alt="Depth Map Detection" width="500"/>
+</p>
+
+## 📡 Published Topics
+
+### Lidar-Camera Fusion Package
+- `/image_lidar`: Image with projected LiDAR points
+- `/detected_object_distance`: Average object distances
+- `/detected_object_pointcloud`: Object point clouds
+
+### Depth Map Detection Package
+- Depth map representations
+- Object pose data
+- Detected object point clouds
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repositories
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## 📄 License
+
+[Add your license information]
+
+## 📞 Contact
+
+[Your contact information]
