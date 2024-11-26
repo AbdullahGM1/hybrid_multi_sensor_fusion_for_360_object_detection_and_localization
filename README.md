@@ -45,7 +45,7 @@ sudo apt-get install libpcl-dev libopencv-dev
 ### 1. Clone Repository
 ```bash
 cd ~/ros2_ws/src
-git clone git clone --recursive https://github.com/AbdullahGM1/hybrid_multi_sensor_fusion_for_360_object_detection_and_localization.git
+git clone --recurse-submodules https://github.com/AbdullahGM1/hybrid_multi_sensor_fusion_for_360_object_detection_and_localization.git
 
 ```
 
