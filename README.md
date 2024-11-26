@@ -1,3 +1,4 @@
+# ROS2 360° Object Detection and Localization Packages
 
 ## 📝 Description
 
@@ -8,66 +9,7 @@ This repository contains two complementary ROS2 packages designed for advanced m
 
 These packages provide a comprehensive solution for 360° object detection and localization using advanced sensor fusion techniques, leveraging LiDAR point clouds, depth maps, and RGB data.
 
-## 🚀 Features
-
-### Lidar-Camera Fusion Package
-- Dynamic transform handling between sensor frames
-- 3D position estimation within object bounding boxes
-- Real-time point cloud projection onto camera images
-- Multi-object detection and localization
-
-### Depth Map Detection Package
-- Point cloud to depth map conversion
-- Object-specific depth map generation
-- 3D pose estimation for detected objects
-- Multi-object real-time tracking
-
-## 🛠️ Technologies
-
-- ROS2 Humble
-- C++
-- PCL (Point Cloud Library)
-- OpenCV
-- YOLOv8 for object detection
-
-## 📦 Prerequisites
-
-- ROS2 Humble
-- YOLOvX ROS package
-- C++ compiler (GCC 8+)
-- PCL and OpenCV
-
-## 🚀 Usage
-
-# ROS2 360° Object Detection and Localization Packages
-
-## Table of Contents
-1. [Overview](#overview)
-2. [Key Features](#-key-features)
-   - [Lidar-Camera Fusion](#lidar-camera-fusion-package)
-   - [Depth Map Detection](#depth-map-detection-package)
-3. [Technologies](#-technologies)
-4. [Prerequisites](#-prerequisites)
-5. [Installation](#-installation)
-6. [Usage](#-usage)
-7. [Demonstrations](#-demonstrations)
-   - [Lidar-Camera Fusion](#lidar-camera-fusion)
-   - [Depth Map Detection](#depth-map-detection)
-8. [Published Topics](#-published-topics)
-9. [Contributing](#-contributing)
-10. [License](#-license)
-11. [Contact](#-contact)
-
-## Overview
-
-TThis repository contains two complementary ROS2 packages designed for advanced multi-sensor object detection and localization:
-
-1. **Lidar-Camera Fusion Package**
-2. **Depth Map Detection and Localization Package**
-
-These packages provide a comprehensive solution for 360° object detection and localization using advanced sensor fusion techniques, leveraging LiDAR point clouds, depth maps, and RGB data.
-
-## 🚀 Key Features
+## 🚀Key Features
 
 ### Lidar-Camera Fusion Package
 - Dynamic transform handling between sensor frames
