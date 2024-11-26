@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+
+  <name>hybrid_multi_sensor_fusion_for_360_object_detection_and_localization</name>
+  <version>1.0.0</version>
+  <description>A hybrid multi-sensor fusion system for 360° object detection and localization, combining LiDAR point clouds, depth maps, and RGB data to achieve comprehensive and accurate results in a full field of view.</description>
+  <maintainer email="agm.musalami@gmail.com">AbdullahGM1</maintainer>
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>ros2launch</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
