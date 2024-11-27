@@ -1,3 +1,7 @@
+## This launch file to run the 360° Multi-Sensor Object Detection and Localization system
+
+
+
 import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription

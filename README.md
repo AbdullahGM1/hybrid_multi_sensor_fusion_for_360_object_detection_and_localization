@@ -174,7 +174,7 @@ Contributions are welcome! Please:
 
 ## 📜 License
 
-MIT
+MIT License
 
 ## 🚨 Important Configuration Tips
 - Verify sensor frame names
