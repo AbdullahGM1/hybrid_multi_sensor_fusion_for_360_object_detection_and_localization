@@ -26,6 +26,9 @@ This repository provides a cutting-edge ROS2 solution for comprehensive 360° ob
 | ![Lidar-Camera Fusion](images/Camera_Lidar_Fusion.gif) | ![Depth Map Detection](images/3.gif) |
 | **Precise Object Localization** | **Depth-Based Object Detection** |
 
+Entire System |
+ ![360° Detection](images/EntireSystem.png)
+
 ## 🛠️ Installation & Setup
 
 ### 📋 Prerequisites
