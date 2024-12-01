@@ -1,6 +1,6 @@
 [submodule "ros2_lidar_camera_fusion_with_detection_cpp"]
-	path = ros2_lidar_camera_fusion_with_detection_cpp
-	url = https://github.com/AbdullahGM1/ros2_lidar_camera_fusion_with_detection_cpp.git
+    path = ros2_lidar_camera_fusion_with_detection_cpp
+    url = https://github.com/AbdullahGM1/ros2_lidar_camera_fusion_with_detection.git
 [submodule "ros2_depth_map_detection_localization_cpp"]
-	path = ros2_depth_map_detection_localization_cpp
-	url = https://github.com/AbdullahGM1/ros2_depth_map_detection_localization_cpp.git
+    path = ros2_depth_map_detection_localization_cpp
+    url = https://github.com/AbdullahGM1/ros2_depth_map.git
