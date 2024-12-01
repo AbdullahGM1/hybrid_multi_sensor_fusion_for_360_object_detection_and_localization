@@ -27,7 +27,9 @@ This repository provides a cutting-edge ROS2 solution for comprehensive 360° ob
 | **Precise Object Localization** | **Depth-Based Object Detection** |
 
 Entire System |
- ![360° Detection](images/EntireSystem.png)
+<div align="center">
+   <img src="images/EntireSystem.png" alt="360° Detection" width="650"/>
+</div>
 
 ## 🛠️ Installation & Setup
 
